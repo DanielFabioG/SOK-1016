@@ -1,8 +1,14 @@
 ---
-title: "11_SOK1016_M1_V23"
-format: pdf
+title: "SOK-1016: Mappeoppgave 1 - reworked"
+author: "Daniel Fabio Groth"
+title-block-banner: "darkslateblue"
+format:
+  html: 
+    code-fold: true
+    df-print: kable
+output: true
 editor: visual
-echo: false
+toc: true
 warning: false
 ---
 

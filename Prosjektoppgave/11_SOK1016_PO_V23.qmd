@@ -10,7 +10,7 @@ toc-title: "Innholdsfortegnelse."
 abstract: | 
     | Skrevet av en gruppe på 2 personer med kandidatnummer 3 og 11 
 format: 
-  pdf:
+  html:
     geometry:
       - top=20mm
       - left=20mm
