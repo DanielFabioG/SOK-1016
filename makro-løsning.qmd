@@ -1,0 +1,89 @@
+---
+title: "Makro semesteroppgave 1 - løsningsforslag"
+format: html
+editor: visual
+---
+
+# Oppgave 1
+
+## a) Anta at et land får et negativt sjokk i sine investeringer. Vis effektene dette vil ha på alle de endogene variablene. Hva skjer med sysselsettingen/arbeidsledigheten? Gi resultatene en real-økonomisk kommentar.
+
+**Innledning**
+
+Vi skal se på $\Delta \ z < 0$, altså at en økonomi går gjennom et sjokk.
+
+Endogene variabler som har endring:
+
+$Y, I, C, G, X-Q$
+
+**Antakelser/forutsetninger:**
+
+Vi bruker grunnleggende keyness modell. Fordi det ikke er prat om inflasjon eller pengepolitikk.
+
+Vi har en åpen økonomi. Fordi vi er i Norge som er en liten åpen økonomi, og derfor passer også keyness modellen bra.
+
+Eksporten $X$ er eksogen og importen $Q$ er endogen avhengig av produksjonen $Y$.
+
+Konsumet $C$ er endogent, avhengig av disponibel inntekt, men kan skifte eller ha et sjokk i parameteren $Z^c$.
+
+Investeringer $I$ er endogene men kan skiftes i en sjokkparameter $Z^I$.
+
+Skatteprovenyet $T$ er avhengig av $Y$ men kan også skiftes politisk gjennom $Z^T$ som er det samme som en offentlig handlings-parameter. Om skattene endrer seg er det $Z^T$ som endrer seg.
+
+Likevektsmodell, samlet etterspørsel = samlet tilbud = $Y$, og $Y =C+I+G+X-Q$
+
+Arbeidsledigheten $u$ er negativt avhengig av $Y$ dvs. når $Y$ øker så øker sysselsettingen.
+
+Gitt alle disse forutsetningene ender vi opp med denne modellen:
+
+$Y = C + I + G +X -Q$
+
+$C = Z^C + C_1(Y-T)$, hvor $C_1$ er $0 < C_1 < 1$
+
+$I = Z^I + b_1 Y$, hvor $b_1$ er $0 < b_1 < 1$
+
+$T = Z^T + tY$, hvor $t$ er $0 < t < 1$
+
+$Q = aY$, hvor $a$ er $0<a<1$
+
+Til sammen er dette de 5 endogene variablene: $Y,C,I,T,Q$ og vi har 5 ligninger $\rightarrow$ determinert.
+
+$B$ = $T-G$ (statsbudsjettsbalanesen) og $NX$ = nettoeksport og $NX = X -Q$. Til slutt har vi offentlige handlings-parametere $Z^T$ og $G$ .
+
+Analytisk løst så ønsker vi her et uttrykk for $Y$ basert på eksogent gitte variabler og parametere.
+
+```{python}
+import sympy as sp
+
+C, I, G, X, T,Z,C_1,b_1,t,a, Y = sp.symbols('Z C I G X T C_1 b_1 t a Y', real=True)
+
+Y_eq = sp.Eq(Y, C + I + G + X - (a*Y))
+C_eq = sp.Eq(C, Z**C+C_1*(Y-T))
+I_eq = sp.Eq(I, Z**I+b_1*Y) 
+T_eq = sp.Eq(T, Z**T+t*Y) 
+y_subs = Y_eq.subs({I: I_eq.rhs, T: T_eq.rhs, C: C_eq.rhs})
+y_solve = sp.solve(y_subs, Y)[0]
+# Løsningen her vil ikke bli direkte lik som skrevet i boken pga python output men
+# den er korrekt "omskrevet i latex"
+y_solve.simplify()
+```
+
+$$
+Y = (\frac{1}{1-C_1(1-t)-b_1+a}) \cdot (Z^C-C_1 \cdot Z^T + Z^I+G+X)
+$$
+
+Venstre parentes er multiplikatoren (hvor stor blir reaksjonen på $Y$ dersom en av paramterne på høyre side endres, mens høyre parentes er de parameterne som kan skifte eller sjokke.
+
+Multiplikatoren er alltid positiv. (Er egentlig en forutsetning)
+
+I oppgaven spørres det om hva som skjer når det skjer et sjokk i investeringene, dette er parameteren $Z^I$ som vi da setter på endrings-form.
+
+**b) Beskriv kort de to formene for finanspolitikk regjeringen kan benytte.**
+
+**c) Anta at regjeringen ønsker å bruke finanspolitikk for å redusere ledigheten. Og at de ønsker å øke G (offentlige utgifter). Beskriv hva som skjer med de endogene variablene.**
+
+## Oppgave 2
+
+**Utled og forklar "Lønnskurven" i kapittel 7. Beskriv hva som kan skifte den opp og ned.**
+
+Tekst her
