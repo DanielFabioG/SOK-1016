@@ -72,13 +72,96 @@ $$
 Y = (\frac{1}{1-C_1(1-t)-b_1+a}) \cdot (Z^C-C_1 \cdot Z^T + Z^I+G+X)
 $$
 
-Venstre parentes er multiplikatoren (hvor stor blir reaksjonen på $Y$ dersom en av paramterne på høyre side endres, mens høyre parentes er de parameterne som kan skifte eller sjokke.
+Venstre parentes er multiplikatoren (hvor stor blir reaksjonen på $Y$ dersom en av parameterne på høyre side endres, mens høyre parentes er de parameterne som kan skifte eller sjokke.
 
 Multiplikatoren er alltid positiv. (Er egentlig en forutsetning)
 
 I oppgaven spørres det om hva som skjer når det skjer et sjokk i investeringene, dette er parameteren $Z^I$ som vi da setter på endrings-form.
 
+$$
+\Delta Y = (\frac{1}{1-C_1(1-t)-b_1+a}) \cdot Z^C$$ Hvor multiplikatoren er positiv og $Z^C < 0$ som betyr at endringen i bruttonasjonalproduktet blir negativ.
+
+```{python include=FALSE}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def linear_func(t): # defining a function
+    return t*1+3 # the function
+
+def linear_func_2(t): # defining a function
+    return t*2 # the function
+
+t = np.linspace(0,7,100) # bnp growth over time
+
+# plotting
+fig, ax1 = plt.subplots(figsize=(5, 2.5))
+ax1.plot(t, linear_func(t), label = "Produksjon") # plotting the phillips curve with bnp relation
+ax1.plot(t, linear_func(t-1), label="$\Delta Y^C$") # plotting the equilibrium point
+# making a 75 degree line
+ax1.plot(t,linear_func_2(t), label = "SE = Y") # plotting the phillips curve with bnp relation
+
+
+# setting y and x limits
+ax1.set_ylim(0, 10)
+ax1.set_xlim(0, 10)
+
+# fixing spines
+ax1.spines['top'].set_color('none')
+ax1.spines['right'].set_color('none')
+
+# fixing the ticks
+ax1.set_xticks([])
+ax1.set_yticks([])
+
+#labels
+ax1.set_ylabel('SE, $SE_0$', loc='top')
+ax1.set_xlabel('Produksjon, $Y$', loc='right')
+# title
+ax1.set_title('Phillips-kurven og produksjon', loc='left')
+ax1.legend();
+```
+
+$Y$ reduseres, $u$ eller arbeidsledighet øker. Videre så har vi at siden $\Delta Y <0$ vil gi $\rightarrow$ effekter på $C$.
+
+$\Delta C = \Delta Z^C+C_1(\Delta Y-\Delta T) = 0$
+
+$\Delta C = C_1 \Delta Y <0$ Så konsumet reduseres.
+
+Hva skjer med investeringene?
+
+Første effekten var $\Delta Z <0$ men siden $I = Z^I + b_1 \cdot Y$ hvor $Z^I < 0$ vil det redusere effektene.
+
+Hva skjer med $T$ og implisitt hva skjer med $B = T-G$
+
+$T = Z^T+t \cdot Y$
+
+$\Delta T = t \Delta Y< 0$
+
+$\Delta B = \Delta T - \Delta G$ som begge er negative og $\Delta G < 0$, så statsbudsjettet svekkes. Skatteprovenyet blir lavere.
+
+Hva skjer med importen? $Q = a \cdot Y$
+
+Importen reduseres $\Delta Q = a \cdot \Delta Y <0$
+
+$NX = X - Q$
+
+$\Delta NX = \Delta X - \Delta Q > 0$
+
+Overskuddet på handelsbalansen øker.
+
 **b) Beskriv kort de to formene for finanspolitikk regjeringen kan benytte.**
+
+Finanspolitikk basert på skatteendringer og offentlige utgifter. $\Delta Z^T$ og $\Delta G$.
+
+Og disse to har lange beslutningsprosesser på 1-5 år og kort virkningstid når beslutningen er tatt.
+
+I $\Delta Y = (\frac{1}{1-C_1(1-t)-b_1+a}) \Delta Z^I$ og $\Delta Y = (\frac{1}{1-C_1(1-t)-b_1+a}) \Delta G$
+
+dersom $\Delta Z^I = \Delta G$ vil effekten bli nøytralisert og $Y \rightarrow Y_1$
+
+$I$ har blitt redusert og erstattet med $G$. Litt usikker på dette siden foreleser driver å blir forvirret av $Z^T$ og $Z^I$.
+
+$T$,$C$ og $Q$ er nå tilbake til samme nivå som før. $Y$ er tilbake, $I$ er redusert og $G$ har økt.
 
 **c) Anta at regjeringen ønsker å bruke finanspolitikk for å redusere ledigheten. Og at de ønsker å øke G (offentlige utgifter). Beskriv hva som skjer med de endogene variablene.**
 
